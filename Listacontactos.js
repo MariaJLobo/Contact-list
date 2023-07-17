@@ -37,6 +37,25 @@ function imprimirContactos() {
   }
 }
 
+function actualizarContacto(id, nuevosDatos) {
+  for (let i = 0; i < contactos.length; i++) {
+    if (contactos[i].id === id) {
+      contactos[i].nombres =
+        nuevosDatos.nombres || contactos[i].nombres;
+      contactos[i].apellidos =
+        nuevosDatos.apellidos || contactos[i].apellidos;
+      contactos[i].telefono =
+        nuevosDatos.telefono || contactos[i].telefono;
+      contactos[i].ciudad = nuevosDatos.ciudad || contactos[i].ciudad;
+      contactos[i].direccion =
+        nuevosDatos.direccion || contactos[i].direccion;
+      console.log("Contacto actualizado:", contactos[i]);
+      return;
+    }
+  }
+  console.log("El contacto no existe en la lista.");
+}
+
 let nuevoContacto = {
   id: 0,
   nombres: "Maria Jose",
@@ -47,3 +66,15 @@ let nuevoContacto = {
 };
 
 agregarContacto(nuevoContacto);
+
+imprimirContactos();
+
+let datosActualizados = {
+  telefono: "8866-5432",
+  direccion: "Villas del Rio",
+};
+
+actualizarContacto(0, datosActualizados);
+
+borrarContacto(0);
+
